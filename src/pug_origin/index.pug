@@ -1,0 +1,31 @@
+include blocks/head-service/head
+include common/mixins
+include common/js
+
+
+body
+	.layout_center_wrapper-project
+		+top-line()
+		+top-banner-out()
+		section.block__example
+			.container
+				.row
+					.col-12
+						h1.title blabla!!!
+						.title__desc
+						|description
+					+grid-4()
+						each item, number in data.slice(0,1)
+							+goods(item)
+					+all-goods-list()
+					+grid-4()
+						each item, number in data.slice(1,2)
+							+goods-promocode(item)
+					+grid-4()
+						each item, number in data.slice(2,3)
+							+goods-auction(item)
+
+	+footer-text()
+
+
+	include blocks/footer-service/footer-service

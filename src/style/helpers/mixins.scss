@@ -1,0 +1,166 @@
+@import "variables";
+
+$browser-prefixes: false !default;
+$position-default: null !default;
+
+@mixin clearfix{
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+
+	&:after{
+		clear: both;
+	}
+}
+
+@mixin absolute__center{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+}
+
+@mixin clean {
+	margin: 0;
+	padding: 0;
+}
+
+// Красивое обрезание лишнего текста
+@mixin text-overflow{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+// Скрытие текста у блока
+@mixin hide-text {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+}
+
+// Центрирование по горизонтали
+@mixin center{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+// Центрирование абсолютно позиционированного элемента по вертикали
+@mixin absolute-center{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+// Single side border radius
+// -------------------------
+@mixin border-top-radius($radius: $border-radius-default) {
+	border-top-right-radius: $radius;
+	border-top-left-radius: $radius;
+}
+@mixin border-right-radius($radius: $border-radius-default) {
+	border-top-right-radius: $radius;
+	border-bottom-right-radius: $radius;
+}
+@mixin border-bottom-radius($radius: $border-radius-default) {
+	border-bottom-right-radius: $radius;
+	border-bottom-left-radius: $radius;
+}
+@mixin border-left-radius($radius: $border-radius-default) {
+	border-top-left-radius: $radius;
+	border-bottom-left-radius: $radius;
+}
+
+//Top, right, bottom, left
+@mixin trbl($top: $position-default,
+								$right: $position-default,
+								$bottom: $position-default,
+								$left: $position-default) {
+	@each $data in top $top, right $right, bottom $bottom, left $left {
+		#{nth($data, 1)}: nth($data, 2);
+	}
+}
+@mixin top-left {
+	@include trbl(0,null,null,0);
+}
+@mixin top-right {
+	@include trbl(0,0);
+}
+@mixin bottom-left {
+	@include trbl(null,null,0,0);
+}
+@mixin bottom-right {
+	@include trbl(null,0,0,null);
+}
+
+// Advanced positioning
+// --------------------
+@mixin position($type,
+								$top: $position-default,
+								$right: $position-default,
+								$bottom: $position-default,
+								$left: $position-default) {
+	position: $type;
+	$allowed_types: absolute relative fixed;
+	@if not index($allowed_types, $type) {
+		@warn "Unknown position: #{$type}.";
+	}
+	@each $data in top $top, right $right, bottom $bottom, left $left {
+		#{nth($data, 1)}: nth($data, 2);
+	}
+}
+@mixin absolute($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
+	@include position(absolute, $top, $right, $bottom, $left);
+}
+@mixin relative($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
+	@include position(relative, $top, $right, $bottom, $left);
+}
+@mixin fixed($top: $position-default, $right: $position-default, $bottom: $position-default, $left: $position-default) {
+	@include position(fixed, $top, $right, $bottom, $left);
+}
+
+
+
+// Center an element vertically and horizontally
+// ---------------------------------------------
+@mixin centerer {
+	@include absolute(50%,null,null,50%);
+	@if $browser-prefixes {
+		@include juice-prefixer(transform, translate(-50%,-50%), webkit moz ms o spec);
+	}
+	@else {
+		transform: translate(-50%,-50%);
+	}
+}
+
+// Center an element vertically
+// ----------------------------
+@mixin vert-centerer {
+	@include relative(50%);
+	@if $browser-prefixes {
+		@include juice-prefixer(transform, translateY(-50%), webkit moz ms o spec);
+	}
+	@else {
+		transform: translateY(-50%);
+	}
+}
+
+//Media
+@mixin MQ($canvas){
+	@if $canvas == xs {
+    @media only screen and (max-width: $xs) { @content; }
+  }
+	@else if $canvas == sm {
+    @media only screen and (max-width: $sm) { @content; }
+  }
+	@else if $canvas == md {
+    @media only screen and (max-width: $md) { @content; }
+  }
+	@else if $canvas == lg {
+    @media only screen and (max-width: $lg) { @content; }
+  }
+}

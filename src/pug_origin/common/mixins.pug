@@ -1,0 +1,255 @@
+include ./js
+
+-
+	var data =
+	[
+		{
+	"number": "1",
+	"id": "4000024",
+	"title": "смартфон Meizu M3 Note, 16 Гб, silver/white",
+	"link": "https://www.ulmart.ru/goods/3875382",
+	"oldPrice": "50000",
+	"price": "70000",
+	"profit": "2 158",
+	"category": "Смартфоны",
+	"categoryLink": "https://www.ulmart.ru/catalog/communicators?sort=5&viewType=1&rec=true",
+	"sale": "-13%",
+	"promocode": "15dec1"
+	},
+	{
+	"number": "2",
+	"id": "4000024",
+	"title": "смартфон Meizu M3 Note, 16 Гб, silver/white",
+	"link": "https://www.ulmart.ru/goods/3875382",
+	"oldPrice": "50000",
+	"price": "70000",
+	"profit": "2 158",
+	"category": "Смартфоны",
+	"categoryLink": "https://www.ulmart.ru/catalog/communicators?sort=5&viewType=1&rec=true",
+	"sale": "-13%",
+	"promocode": "15dec1"
+	},
+
+	{
+	"number": "3",
+	"id": "4000024",
+	"title": "смартфон Meizu M3 Note, 16 Гб, silver/white",
+	"link": "https://www.ulmart.ru/goods/3875382",
+	"oldPrice": "50000",
+	"price": "70000",
+	"profit": "2 158",
+	"category": "Смартфоны",
+	"categoryLink": "https://www.ulmart.ru/catalog/communicators?sort=5&viewType=1&rec=true",
+	"sale": "-13%",
+	"promocode": "15dec1"
+	},
+	{
+	"number": "4",
+	"id": "3896951",
+	"title": "ноутбук HP Pavilion 15-au026ur, 15.6\' Full HD...",
+	"link": "https://www.ulmart.ru/goods/3958265",
+	"oldPrice": "38 990",
+	"price": "37 026",
+	"profit": "2 964",
+	"category": "Ноутбуки",
+	"categoryLink": "https://www.ulmart.ru/catalog/notebooks?sort=5&viewType=1&rec=true",
+	"sale": "-16%",
+	"promocode": "15dec2"
+	},
+	{
+	"number": "5",
+	"id": "4000024",
+	"title": "ноутбук MicroXperts [U400-11] W10SL, 13.3\'...",
+	"link": "https://www.ulmart.ru/goods/3785254",
+	"oldPrice": "47 470",
+	"price": "42 723",
+	"profit": "4 747",
+	"category": "Ноутбуки",
+	"categoryLink": "https://www.ulmart.ru/catalog/notebooks?sort=5&viewType=1&rec=true",
+	"sale": "-15%",
+	"promocode": "15dec3"
+	},
+	{
+	"number": "6",
+	"id": "665386",
+	"title": "Телевизор Zifro LTV40K660P001, 40\"...",
+	"link": "https://www.ulmart.ru/goods/3896951",
+	"oldPrice": "18 990",
+	"price": "18 352",
+	"profit": "638",
+	"category": "Телевизоры",
+	"categoryLink": "https://www.ulmart.ru/catalog/tvs?sort=5&viewType=1&rec=true",
+	"sale": "-20%",
+	"promocode": "15dec4"
+	},
+	{
+	"number": "7",
+	"id": "3462072",
+	"title": "Стиральная машина Midea ABWM612G2...",
+	"link": "https://www.ulmart.ru/goods/4018105",
+	"oldPrice": "15 490",
+	"price": "14 504",
+	"profit": "986",
+	"category": "Стиральные машины",
+	"categoryLink": "https://www.ulmart.ru/catalog/washing_machines?sort=5&viewType=1&rec=true",
+	"sale": "-30%",
+	"promocode": "15dec5"
+	},
+	{
+	"number": "8",
+	"id": "3462072",
+	"title": "Утюг Polaris PIR 2458AK, 2 400 Вт, голубой",
+	"link": "https://www.ulmart.ru/goods/935855",
+	"oldPrice": "1 990",
+	"price": "1 764",
+	"profit": "226",
+	"category": "Утюги, паровые станции",
+	"categoryLink": "https://www.ulmart.ru/catalog/irons_etc?sort=5&viewType=1&rec=true",
+	"sale": "-44%",
+	"promocode": "15dec6"
+	}
+	]
+	
+	var topBannerPath = "https://fast.ulmart.ru/ns/verstka/bcn/img/top-banner.jpg";
+	var topBannerPathOut = "https://fast.ulmart.ru/ns/verstka/best_stock_january/img/top-banner.jpg";
+	var pathCardImgAdmin = "https://fast.ulmart.ru/ns/verstka/bcn/img/";
+	var pathCardImgLocal = "img/";
+	
+
+mixin a(attr)
+	- attr = attr || {}
+	a()&attributes(attr)
+		block
+
+//- Хедер логотипы(белый и красный) и конопка ведущая на Юлмарт
+mixin top-line()
+	.top-line
+		.container
+			.row
+				.col-lg-3.col-md-4.col-sm-6.col-12.align-self-center.justify-content-center
+					a(class="top-line__logo" href="https://www.ulmart.ru/", target="_blank")
+						img(src="img/ulmart-logo-red.png", alt="logo")
+					//-img(src="img/ulmart-logo-white.png", alt="logo")
+				.col-lg-4.col-md-5.col-sm-6.col-12.offset-lg-5.offset-md-3
+					a(class="top-line__shop" href="https://www.ulmart.ru/", target="_blank") Перейти к покупкам на ulmart.ru
+
+//- Топ баннер(в контейнере, возможно и на всю ширину)
+mixin top-banner()
+	section.top-banner
+		.container
+			.row
+				img(class="top-banner__img" src=`${topBannerPath}`, alt="topBanner")
+					
+mixin top-banner-out()
+	section.top-banner
+		img(class="top-banner__img" src=`${topBannerPathOut}`, alt="top banner")
+
+//- Товары
+mixin goods(data)
+	//- .goods__item
+	//- 	.goods__wrap__img
+	//- 		a(class="goods__picture__wrap" href= `${data.link}` target="_blank")
+	//- 			img(class="goods__picture" src=`${pathCardImgAdmin + data.id + '.jpg'}`)
+	//- 	.goods__wrap__name
+	//- 		.goods__name
+	//- 			| #{formatTitleAlter(data.title)}
+	//- 	.goods__wrap__price
+	//- 		.price__block
+	//- 			.goods__retail__price
+	//- 				| !{getProfit(data.oldPrice, data.price)}.- 
+	//- 			.goods__start__price
+	//- 				| !{getNumberFormat(data.price)}.-
+	//- 	a(class="goods__link", href=`${data.link}`) Купить
+
+	.goods-wrapper
+		.goods-head
+			a(href=`${data.link}`, class="goods-head__link",target="_blank")
+				img(src=`${pathCardImgAdmin + data.id + '.jpg'}`, alt="Товар", class="goods-head__img")
+		.goods-wrapper-name
+			.goods-head__name
+				| #{formatTitleAlter(data.title)}
+		.goods-middle
+			//- if data.oldPrice !== '' Если старая цена пустая
+			.goods-middle__price
+				.goods-middle__retail
+					| !{getNumberFormat(data.oldPrice, data.price)}.- 
+				.goods-middle__start
+					| !{getNumberFormat(data.price)}.-
+		a(href=`${data.link}`, class="goods-bottom__link") Купить
+		
+
+//- Товары с промокодом и выгодой
+mixin goods-promocode(data)
+	.goods-wrapper.goods-wrapper-promocode
+		.goods-sale
+			| Выгода 
+			br
+			span #{data.sale}
+		.goods-head
+			a(href=`${data.link}`, class="goods-head__link",target="_blank")
+				img(src=`${pathCardImgAdmin + data.id + '.jpg'}`, alt="Товар", class="goods-head__img")
+		.goods-wrapper-name
+			.goods-head__name
+				| #{formatTitleAlter(data.title)}
+		.goods-promocode
+			| Промокод: 
+			span #{data.promocode}
+		.goods-middle
+			.goods-middle__price
+				.goods-middle__retail
+					| !{getProfit(data.oldPrice, data.price)}.- 
+				.goods-middle__start
+					| !{getNumberFormat(data.price)}.-
+		a(href=`${data.link}`, class="goods-bottom__link") Купить
+		
+		
+//- Товары для аукциона
+mixin goods-auction(data)
+	.goods-wrapper.goods-wrapper-auction
+		.goods-head
+			a(href=`${data.link}`, class="goods-head__link",target="_blank")
+				img(src=`${pathCardImgAdmin + data.id + '.jpg'}`, alt="Товар", class="goods-head__img")
+		.goods-wrapper-name
+			.goods-head__name
+				| #{formatTitleAlter(data.title)}
+		.goods-middle
+			.goods-middle__line
+				.goods-middle__text
+					| Розничная цена
+				.goods-middle__retail-price
+					| !{getProfit(data.oldPrice, data.price)}.-
+			.goods-middle__line
+				.goods-middle__text
+					| Стартовая цена
+				.goods-middle__start-price
+					| !{getNumberFormat(data.price)}.-
+		a(class="goods-bottom__link", href= `${data.link}`) О товаре
+			
+
+//- Сетка по 3 товара
+mixin grid-4()
+	.col-lg-4.col-md-6.col-sm-6.col-12
+		block
+			
+//- Сетка по 4 товара
+mixin grid-3()
+	.col-lg-3.col-md-6.col-sm-6.col-12
+		block
+			
+//- Футер служебка
+mixin footer-text()
+	footer.footer
+		.container
+			.row
+				.col-lg-12.col-md-12.col-sm-12.col-xs-12
+						.footer__text
+							| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veritatis!
+
+//- Выводит все товары по 4 из списка
+mixin all-goods-list()
+	each item, number in cards
+		if ((number % 4) == 0)
+			.row
+				each item, j in cards.slice(number, number+4)
+					+grid-3()
+						+active-cards(item)

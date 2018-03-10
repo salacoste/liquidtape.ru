@@ -1,0 +1,206 @@
+-
+		/**
+		* @param {number || string} data - Цена с пробелами или без
+		* @return {string}
+		*/
+		function getNumberFormat(data) {
+			/** @type {number} */
+			var thousands;
+			/** @type {number} */
+			var hundreds;
+			/** @type {number} */
+			var result;
+
+			if (typeof !parseInt(data) === 'NaN') {
+				// Убираем возможные пробелы
+				data = data.replace(/\s/g, '');
+
+				console.log('Here is some trouble with price ' + data);
+			}
+			// Проверка на слишком высокую цену(опечатка по цене)
+			checkPrice(data);
+			// Дробим число, чтобы поставить декоративный пробел
+			if ( ((data / 1000) < 1000) && (Math.floor(data / 1000) > 0) ) {
+				thousands = Math.floor(data / 1000);
+				hundreds = data % 1000;
+				// 1000 / 1000 = 0 => 000 etc
+				if (hundreds === 0) {
+					hundreds = '000';
+				} else if (hundreds < 10) {
+					hundreds = '00' + hundreds;
+				} else if ( (hundreds < 100) && (hundreds >= 10)) {
+					hundreds = '0' + hundreds;
+				}
+				return result = thousands + ' ' + hundreds;
+			} else if (Math.floor(data / 1000) === 0)  {
+				return data;
+			}
+				return data;
+			}
+
+			function checkPrice(data, borderValue){
+				borderValue = borderValue || 70000;
+				if (data > borderValue) {
+					console.log('Here some trouble with too big price ' + data);
+				}
+				return true;
+			}
+			/**
+			/**
+			* @param {number} oldPrice - Старая цена
+			* @param {number} newPrice - Новая цена
+			* @param {boolean} percent - Указывать ли значение в процентах
+			* @return {string}
+			*/
+			function getProfit(oldPrice, price, percent) {
+				/** @type {number} */
+				var profit;
+				var profitPercent;
+				// Убираем возможные пробелы, если передаем строку
+				isNaN(oldPrice) ? oldPrice = oldPrice.replace(/\s/g, '') : false;
+				isNaN(price) ?  price =  price.replace(/\s/g, '') : false;
+				// if (Number(oldPrice) === Number(price)) {
+				//   return false;
+				// }
+
+				// Преобразование к числу и вычисление прибыли
+				profit = Number(oldPrice) - Number(price);
+
+				// Если выгода <= 0, скорее всего здесь ошибка
+				if (profit <= 0)  {
+					console.log('Here some trouble with profit');
+					return 'ERROR';
+				}
+				else {
+					return getNumberFormat(profit);
+				}
+				// if (percent !== 'undefined') {
+
+				//  profitPercent =  Math.round((1 - Number(price) / Number(oldPrice)) * 100);
+
+				//   console.log(percent);
+				//   if (profitPercent <= 0) {
+				//     console.log('Here some trouble with profit');
+				//     return 'ERROR';
+				//   }
+				//   else {
+				//     return profitPercent + '%';
+				//   }
+				// }
+			}
+
+
+
+		/**
+		* Add links to text
+		* param {string} data — string to be formatted
+		* param {...object} ...links — links, that show be added
+		* @property {string} href — attr to html <a> tag
+		* @property {string} text — text to html <a> tag
+		* Example for jade:
+		* - let textData = 'Our Support Team by e-mail at support@fbs.com or via live chat in the bottom right-hand corner on fbs.com';
+		* // Add only one link
+		* div !{addLink(textData, {href: '#', text: 'support@fbs.com'})}
+		* // Add multipy links
+		* div !{addLink(textData, {href: '#', text: 'support@fbs.com'}, {href: '#', text: 'fbs.com'})}
+		*
+		*/
+		function addLink(data, ...links) {
+			links.forEach((link) => {
+				let formattedPhrase = ` <a class="link" target="_blank" href="${link.href}">${link.text}</a>`;
+				// if (!link.space) {
+				//   link.text = new RegExp(`\\s${link.text}`)
+				// }
+				data = data.replace(link.text, formattedPhrase);
+			});
+			return data;
+		}
+
+
+
+		/**
+		* Autocorrect DICTIONARY
+		*/
+
+		/**
+		* @type {Array}
+		* View to add more rules
+		*/
+		var dictionaryBase =
+		[
+		// [['MB[^-]', '[^\\wа-я]МБ'], 'Мб'],
+		// ['(\\d)(Мб)', '$1&nbsp;$2'], // 9Мб -> 9&nbsp;Мб
+		// [['Gb[^\\wа-я]', '[^\\wа-я]ГБ'], 'Гб'],
+		// ['(\\d)(Гб)', '$1&nbsp;$2'], // 9Гб -> 9&nbsp;Гб
+		// [['[^\\wа-я]Tb', '[^\\wа-я]ТБ'], 'Тб'],
+		// ['(\\d)(Тб)','$1&nbsp;$2'], // 9Тб -> 9&nbsp;Тб
+		// ['(\\d\\d)(.)(\\d")','$1,$3'], // 99.9" -> 99,9"
+		['WiFi', 'Wi-Fi'],
+		['(\\d)(GB)', '$1&nbsp;Гб'],
+		['(\\d)(TB)', '$1&nbsp;Тб'],
+		['1 Тб', '1&nbsp;Тб'],
+		['19.5\"', '19,5\"'],
+		['15.6\"', '15,6\"'],
+		['21.5\"', '21,5\"'],
+		['\"','&quot;']
+		];
+		
+		/**
+		* @type associative {Array}
+		* View to work with
+		*/
+		var dictionaryFormatted = [];
+
+		dictionaryBase.forEach(function(item, number){
+			dictionaryFormatted.push({});
+			dictionaryFormatted[number].mistake = item[0];
+			dictionaryFormatted[number].correct = item[1];
+		});
+
+		/**
+		* regexData @type {string}
+		*/
+		function escapeRegex(regexData) {
+			//regexData = regexData.replace(/\\./gi,'');
+			return regexData;
+		}
+
+		/**
+		* Correct this shit
+		*/
+
+		function formatTitleAlter(data, titleflag, dictionary) {
+
+		titleflag = titleflag || false;
+		dictionary = dictionary || dictionaryFormatted;
+		dictionary.forEach(function(item, number){
+		if (Array.isArray(item.mistake)) {
+			item.mistake.forEach(function(itemArrayMistake){
+			var itemMistake = new RegExp(itemArrayMistake, 'gi');
+				if (itemMistake.test(data)) {
+					itemMistake = new RegExp(escapeRegex(itemArrayMistake), 'gi');
+					data = data.replace(itemMistake, item.correct);
+				}
+			});
+			} else {
+			var itemMistake = new RegExp(item.mistake, 'gi');
+				if (itemMistake.test(data)) {
+					itemMistake = new RegExp(escapeRegex(item.mistake), 'gi');
+					data = data.replace(itemMistake, item.correct);
+				}
+			}
+		});
+		return data.capitalizeFirstLetter();;
+		}
+
+		/**
+		* @param {string} data - Заголовок
+		* @return {string} Заголовок с заглавной буквы
+		*/
+		function formatCapitalize(data) {
+			return data.charAt(0).toUpperCase() + data.slice(1);
+		}
+
+		String.prototype.capitalizeFirstLetter = function() {
+			return this.charAt(0).toUpperCase() + this.slice(1);
+		}

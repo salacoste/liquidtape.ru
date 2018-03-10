@@ -1,0 +1,150 @@
+/*+goods*/
+.goods-wrapper{
+	overflow: hidden;
+	background-color: #fff;
+	margin-bottom: 40px;
+	border:1px solid #ebebeb;
+	position: relative;
+	&:hover{
+		box-shadow: 4px 0px 20px rgba(0,0,0,.2);
+		//cursor:pointer;
+	}
+	&>div{
+		padding: 0 20px;
+	}
+}
+
+.goods-head{
+	margin-bottom: 10px;
+	&__link{
+		width: 300px;
+		height: 250px;
+	}
+	&__img{
+		display: block;
+		margin: 0 auto;
+	}
+	&__name{
+		font-size: 14px;
+		color: #010101;
+		text-align: left;
+	}
+}
+
+.goods-middle{
+	margin-bottom: 10px;
+	&__price{
+		position: relative;
+		@include clearfix;
+	}
+	&__retail{
+		font-size: 14px;
+		color: #acacac;
+		float: left;
+		//margin-left: 37px;
+		margin-top: 16px;
+		position: relative;
+		text-decoration: line-through;
+		@include MQ(lg){
+			margin-left: 0;
+		}
+
+	}
+	&__retail-price{
+    font-size: 16px;
+    color: #010101;
+    float: right;
+	}
+	&__start-price{
+    font-size: 22px;
+    color: #010101;
+    font-weight: 700;
+    float: right;
+	}
+	&__start{
+		font-size: 30px;
+		color: #25232a;
+		font-weight: 900;
+		float: right;
+	}
+	&__text{
+		font-size: 12px;
+    color: grey;
+    float: left;
+    margin-top: 7px;
+	}
+	&__line{
+		@include clearfix;
+	}
+}
+
+.goods-bottom{
+	position: relative;
+	&__link{
+		text-align: center;
+		text-decoration: none;
+		font-size: 14px;
+		color: #b2b2b2!important;
+		display: block;
+		border: 1px solid #ed1b35;
+		padding: 10px;
+		width: 100%;
+		&:hover{
+			background-color: #ed1b35;
+			color: #fff !important;
+			cursor: pointer;
+		}
+	}
+}
+
+.goods-wrapper-name{
+	height: 70px;
+}
+
+.goods-promocode{
+	width: 75%;
+	background: #222221;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 300;
+	margin-left: 14px;
+	padding: 4px 14px !important;
+	span{
+		font-size: 14px;
+		font-weight: 900;
+	}
+}
+
+.goods-sale{
+	color: #fff;
+  font-size: 12px;
+	font-weight: 300;
+  background: #94c11f;
+	text-align: center;
+  width: 60px;
+  height: 60px;
+	border-radius: 50%;
+  position: absolute;
+  z-index: 10000;
+  right: 25px;
+  top: 135px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 45px;
+	color: #fff;
+	padding: 0 !important;
+	span{
+		font-size: 14px;
+		position: absolute;
+    top: 16px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    display: block;
+	}
+}
+
+// .goods-wrapper.goods-wrapper-promocode{
+// 	min-height: 460px;
+// }

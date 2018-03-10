@@ -1,0 +1,76 @@
+//DEFAULT STYLE//
+.top-line{
+	position: relative;
+	@include clearfix;
+	&__logo{
+		display: inline-block;
+		@include MQ(sm) {
+			
+		}
+		@include MQ(xs) {
+			display: block;
+			float: none;
+			text-align: center;
+			margin-left: 0;
+			margin-top: 15px;
+		}
+	}
+	&__shop{
+		display: block;
+		font-size: .75em;
+		background: #c32a4b;
+		color: #fff;
+		text-align: center;
+		padding: 10px 15px;
+		border-radius: 30px;
+		margin: 20px 0;
+		box-shadow: 1px 1px 1px rgba(142,27,52,.5);
+		@include MQ(sm) {
+			margin-right: 10px;
+		}
+		@include MQ(xs) {
+			float: none;
+			font-size: 1em;
+			margin-right: 0;
+		}
+		&:hover{
+			color: #fff;
+			background-color: #ff5534;
+			background-image: -webkit-linear-gradient(#ff5534 0,#e4003a 100%);
+			background-image: linear-gradient(#ff5534 0,#e4003a 100%);
+		}
+	}
+}
+
+.top-banner{
+	position: relative;
+	&__img{
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+	}
+}
+
+.header{
+	position: relative;
+}
+
+.header__banner{
+	display: block;
+	margin: 0 auto;
+}
+
+.header__title{
+	font-size: 66px;
+	color:#fff;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.title{
+	font-size: em($h1FZ);
+}
+
+.title__desc{
+	font-size: em($h1desc);
+}

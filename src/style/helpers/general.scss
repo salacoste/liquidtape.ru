@@ -1,0 +1,84 @@
+*::-webkit-input-placeholder {
+	color: #666;
+	opacity: 1;
+}
+*:-moz-placeholder {
+	color: #666;
+	opacity: 1;
+}
+*::-moz-placeholder {
+	color: #666;
+	opacity: 1;
+}
+*:-ms-input-placeholder {
+	color: #666;
+	opacity: 1;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+
+}
+body input:required:valid,
+body textarea:required:valid {
+
+}
+
+a{
+	text-decoration: none;
+	transition: all .2s ease;
+	&:hover{
+		transition: none;
+		text-decoration: none;
+	}
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+body{
+	font-family: 'Roboto', 'Arial', sans-serif;
+	font-weight: normal;
+	font-size: $bodyFZ;
+	line-height: $bodyLH;
+	min-width: 320px;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.layout_center_wrapper-project {
+	/* min-width: 1210px; */
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	//min-height: 100%;
+	overflow: hidden;
+	flex: 1 0 auto;
+}
+
+//Внутренний контейнер
+.container__inner{
+	background-color: #fff;
+	width: 100%;
+	margin: 0 auto;
+	min-height: 100%;
+	overflow: hidden;
+	max-width: 1200px;
+}

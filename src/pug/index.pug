@@ -1,0 +1,49 @@
+include blocks/head-service/head
+
+    body
+// Navbar
+nav.navbar.navbar-expand-lg.bg-white.fixed-top(color-on-scroll='500')
+    .container
+        .navbar-translate
+            a.navbar-brand(href='#', rel='tooltip', title='Жидкая изолента Isolate 3', data-placement='bottom', target='_blank')
+                | Жидкая изолента Liquid Tape
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navigation', aria-controls='navigation-index', aria-expanded='false', aria-label='Открыть меню')
+                span.navbar-toggler-bar.bar1
+                span.navbar-toggler-bar.bar2
+                span.navbar-toggler-bar.bar3
+        .collapse.navbar-collapse(data-nav-image='../assets/img/blurred-image-1.jpg', data-color='orange')
+            ul.navbar-nav.mx-auto
+                li.nav-item.active
+                    a.nav-link.text-danger(href='tel:123123')
+                        i.fa.fa-phone-square
+                        p 79054775389
+
+            ul.navbar-nav.navbar-right
+                li.nav-item
+                    a.nav-link(href='#')
+                        p Описание
+                li.nav-item
+                    a.nav-link(href='#')
+                        p Применение
+                li.nav-item
+                    a.nav-link(rel='tooltip', title='Follow us on Twitter', data-placement='bottom', href='https://twitter.com/CreativeTim', target='_blank')
+                        i.fa.fa-bolt
+                        p.hidden-lg-up Свойства
+            .row
+                ul.navbar-nav.navbar-right
+                    li.nav-item
+                        a.nav-link(href='#')
+                            p Описание
+                    li.nav-item
+                        a.nav-link(href='#')
+                            p Применение
+                    li.nav-item
+                        a.nav-link(rel='tooltip', title='Follow us on Twitter', data-placement='bottom', href='https://twitter.com/CreativeTim', target='_blank')
+                            i.fa.fa-bolt
+                            p.hidden-lg-up Свойстваq
+
+
+// End Navbar
+
+
+include blocks/footer-service/footer-service
